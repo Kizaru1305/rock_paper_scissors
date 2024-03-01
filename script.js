@@ -38,7 +38,7 @@ let round = 0;
 
 let playerScore = document.querySelector(".playerScore");
 let computerScore = document.querySelector(".computerScore");
-
+const controller = new AbortController();
 
 const buttons = document.querySelectorAll("button");
 const winnerMsg = document.querySelector(".winner");
@@ -79,8 +79,8 @@ buttons.forEach((button) => {
           winner.textContent = "Game ended in a tie";
           document.body.appendChild(winner);
       }
-
+      controller.abort()
     }
 
-  });
+  }, {signal: controller.signal});
 });
